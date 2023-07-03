@@ -7,9 +7,40 @@
 
 import SwiftUI
 
-struct SwiftUIView1: View {
+enum LoadingState {
+    case loading, success, failed
+}
+
+struct LoadingView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Loading...")
+    }
+}
+
+struct SuccessView: View {
+    var body: some View {
+        Text("Success!")
+    }
+}
+
+struct FailedView: View {
+    var body: some View {
+        Text("Failed")
+    }
+}
+
+struct SwiftUIView1: View {
+    var loadingState = LoadingState.loading
+    
+    var body: some View {
+        switch loadingState {
+        case .loading:
+            LoadingView()
+        case .success:
+            SuccessView()
+        case .failed:
+            FailedView()
+        }
     }
 }
 
